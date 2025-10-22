@@ -1,0 +1,6 @@
+FastAPI
+uvicorn
+pydantic
+watchdog
+python-multipart
+aiofiles

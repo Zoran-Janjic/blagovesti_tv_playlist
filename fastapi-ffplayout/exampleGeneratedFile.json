@@ -1,0 +1,366 @@
+{
+  "channel": "Channel 1",
+  "date": "2025-09-29",
+  "program": [
+    {
+      "in": 0.0,
+      "out": 463.005896,
+      "duration": 463.005896,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 615.096599,
+      "duration": 615.096599,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 02.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 755.112925,
+      "duration": 755.112925,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 03.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 640.05805,
+      "duration": 640.05805,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 04.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 725.112744,
+      "duration": 725.112744,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 05.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 833.945,
+      "duration": 833.945,
+      "source": "/var/lib/ffplayout/tv-media/030_Molitve_oGavrilo/MOL_0010_ЈУТАРЊА МОЛИТВА - JUTARNJA MOLITVA.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 777.473984,
+      "duration": 777.473984,
+      "source": "/var/lib/ffplayout/tv-media/030_Molitve_oGavrilo/MOL_0016_ПОСЛЕДЊА ВРЕМЕНА -- СТАРАЦ ЈУЛИЈАН.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1259.33424,
+      "duration": 1259.33424,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/1080p DUH_1126_Pouke_Тихи глас _ Егоизам је непријатељ монаха.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1828.083333,
+      "duration": 1828.083333,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/BDENJE MONAHA U NJEGOVOJ KELIJI _ Tihi glas.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1584.94737,
+      "duration": 1584.94737,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/DUH_0001_oGavrilo_BESEDA S BLAŽENIM STARCEM JEFREMOM _ Tihi glas.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 669.849229,
+      "duration": 669.849229,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/DUH_0026_oGavrilo_SVETA VODA_ U ČEMU JE NJENA SILA_ _ Tihi glas.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1787.055013,
+      "duration": 1787.055013,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/Tihi glas - CRKVENI POGLED NA BRAK.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1732.0,
+      "duration": 1732.0,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/Tihi glas - KAKO SE BORITI S DEPRESIJOM.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1084.65096,
+      "duration": 1084.65096,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/Tihi glas - NAŠA NEBESKA MAJKA.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1803.733333,
+      "duration": 1803.733333,
+      "source": "/var/lib/ffplayout/tv-media/Filmovi crtani/Peresvet i Oslaljabej-crtani film_V1.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1828.8,
+      "duration": 1828.8,
+      "source": "/var/lib/ffplayout/tv-media/Filmovi crtani/Sveti Sergije Radonješki-crtani_film_V1.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 2865.84,
+      "duration": 2865.84,
+      "source": "/var/lib/ffplayout/tv-media/051_Zdravlje i ishrana/OST_016_Pravi izbor (12. emisija) - Porodično savetovalište, TV Enter.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 2295.106757,
+      "duration": 2295.106757,
+      "source": "/var/lib/ffplayout/tv-media/051_Zdravlje i ishrana/OST_001_Čudo mozga.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 448.075465,
+      "duration": 448.075465,
+      "source": "/var/lib/ffplayout/tv-media/051_Zdravlje i ishrana/OST_018_Razvod - Značenja i uticaj na porodicu [Video edukacija].mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3021.033,
+      "duration": 3021.033,
+      "source": "/var/lib/ffplayout/tv-media/Serija Sveti Pajsije/Serija_Sveti Pajsije Svetogorac epizoda 8.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3173.03,
+      "duration": 3173.03,
+      "source": "/var/lib/ffplayout/tv-media/Ekatarina Velika-serija/SEZ02_Katarina Velika 4.epizoda.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3066.078984,
+      "duration": 3066.078984,
+      "source": "/var/lib/ffplayout/tv-media/070_Ostalo_oGavrilo/OST_141_Радости моја Христос воскресе (цео филм).mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 2612.128798,
+      "duration": 2612.128798,
+      "source": "/var/lib/ffplayout/tv-media/070_Ostalo_oGavrilo/Празно гнездо птице ластавице (цео филм).mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1755.173991,
+      "duration": 1755.173991,
+      "source": "/var/lib/ffplayout/tv-media/060_Putopisi oGavrilo/PUT_0060_Put u Kathmandu 3.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3307.171701,
+      "duration": 3307.171701,
+      "source": "/var/lib/ffplayout/tv-media/Filmovi Nenad/Film_RUSIJA-VELIKA_TAJNA_480p.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 109.064127,
+      "duration": 109.064127,
+      "source": "/var/lib/ffplayout/tv-media/Filmovi Nenad/SPICA_08_NB_MANASTIR LEPAVINA - KAO MESTO ODRASTANJA JEDNE DUŠE..mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3179.16,
+      "duration": 3179.16,
+      "source": "/var/lib/ffplayout/tv-media/014_Duhovne pouke izbor oGavrilo/OST_284_Јеромонах Антоније манастир Кувеждин.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1615.181016,
+      "duration": 1615.181016,
+      "source": "/var/lib/ffplayout/tv-media/014_Duhovne pouke izbor oGavrilo/OST_291_Душанов законик_ Право у доба Немањића.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1803.733333,
+      "duration": 1803.733333,
+      "source": "/var/lib/ffplayout/tv-media/Filmovi crtani/Peresvet i Oslaljabej-crtani film_V1.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1828.8,
+      "duration": 1828.8,
+      "source": "/var/lib/ffplayout/tv-media/Filmovi crtani/Sveti Sergije Radonješki-crtani_film_V1.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3021.033,
+      "duration": 3021.033,
+      "source": "/var/lib/ffplayout/tv-media/Serija Sveti Pajsije/Serija_Sveti Pajsije Svetogorac epizoda 8.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3173.03,
+      "duration": 3173.03,
+      "source": "/var/lib/ffplayout/tv-media/Ekatarina Velika-serija/SEZ02_Katarina Velika 4.epizoda.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3307.171701,
+      "duration": 3307.171701,
+      "source": "/var/lib/ffplayout/tv-media/Filmovi Nenad/Film_RUSIJA-VELIKA_TAJNA_480p.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3066.078984,
+      "duration": 3066.078984,
+      "source": "/var/lib/ffplayout/tv-media/070_Ostalo_oGavrilo/OST_141_Радости моја Христос воскресе (цео филм).mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 951.693984,
+      "duration": 951.693984,
+      "source": "/var/lib/ffplayout/tv-media/013_Duhovne pouke izbor oGavrilo/OST_133_Исихазам као освајање унутарњих простора-Амфилохије.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 895.106032,
+      "duration": 895.106032,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 06.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 710.112653,
+      "duration": 710.112653,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 07.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 635.06576,
+      "duration": 635.06576,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 08.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 690.050612,
+      "duration": 690.050612,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 09.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 890.113741,
+      "duration": 890.113741,
+      "source": "/var/lib/ffplayout/tv-media/Psaltir/Otac Joil - čitanje Psaltira katizma 10.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 25.066667,
+      "duration": 25.066667,
+      "source": "/var/lib/ffplayout/tv-media/SPICA_BlagovestiTV.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3021.033,
+      "duration": 3021.033,
+      "source": "/var/lib/ffplayout/tv-media/Serija Sveti Pajsije/Serija_Sveti Pajsije Svetogorac epizoda 8.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3173.03,
+      "duration": 3173.03,
+      "source": "/var/lib/ffplayout/tv-media/Ekatarina Velika-serija/SEZ02_Katarina Velika 4.epizoda.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3342.767891,
+      "duration": 3342.767891,
+      "source": "/var/lib/ffplayout/tv-media/Filmovi dokumentarni/D011_Инокиња - цеo филм о монахињи Јулијанији (Денисова).mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1018.380249,
+      "duration": 1018.380249,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/DUH_0012_oGavrilo_MONAHINJA PAVLINA _ Tihi glas.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 883.240408,
+      "duration": 883.240408,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/DUH_0014_oGavrilo_O ČESTOM PRIČEŠĆIVANJU _ Tihi glas.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 3151.063965,
+      "duration": 3151.063965,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/DUH_0019_oGavrilo_POSTITI ILI NE POSTITI - Emisija TIHI GLAS (1).mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 2017.30322,
+      "duration": 2017.30322,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/DUH_0034_oGavrilo_ZAŠTO U ČOVEKA ULAZI NEČISTI DUH _TIHI GLAS.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 1040.393265,
+      "duration": 1040.393265,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/ISPOVEST_ POKAJANJE ILI BLAGOSLOV ZA PRIČEŠĆE_ _ Tihi glas.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 692.836848,
+      "duration": 692.836848,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/JEROMONAH SOFRONIJE IZ MANASTIRA SV. PANTELEJMONA _ Tihi glas.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 911.4761,
+      "duration": 911.4761,
+      "source": "/var/lib/ffplayout/tv-media/040_Tihi glas oGavrilo/NIJE SREĆA TA KOJA NAS ČINI ZAHVALNIM _ Tihi glas.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 115.5827359999821,
+      "duration": 319.483356,
+      "source": "/var/lib/ffplayout/tv-media/Muzika/Da vaskrsnu duše naše-Hor Bogorodice Trojeručice.mp4"
+    }
+  ]
+}
