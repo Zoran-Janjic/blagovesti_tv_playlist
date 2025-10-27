@@ -9,6 +9,29 @@ import json
 
 router = APIRouter()
 
+@router.get("/")
+async def root():
+    """Root endpoint - API health check."""
+    return {
+        "service": "ffplayout-api",
+        "status": "healthy",
+        "version": "1.0.0",
+        "created_by": "Zoran Janjic",
+        "endpoints": {
+            "docs": "/docs",
+            "generate_playlist": "/generate-playlist?date=YYYY-MM-DD",
+            "generate_week": "/generate-week?start_date=YYYY-MM-DD",
+            "list_playlists": "/playlists",
+            "get_videos": "/videos"
+        }
+    }
+
+@router.get("/healthz")
+async def health_check():
+    """Health check endpoint for monitoring."""
+    return {"status": "healthy", "service": "blagovesti-tv-api"}
+
+
 @router.get("/videos")
 async def get_video_files():
     try:
