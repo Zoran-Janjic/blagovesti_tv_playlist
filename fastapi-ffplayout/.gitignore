@@ -1,28 +1,15 @@
 # Environment variables
 .env
 
-# Python
+# Python cache
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
 
 # Virtual Environment
 .venv/
@@ -37,21 +24,25 @@ env/
 *.swo
 *~
 
-# OS
+# OS files
 .DS_Store
-.DS_Store?
+**/.DS_Store
 ._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
 Thumbs.db
 
-# Application specific
+# Generated files
 playlists/
 *.log
 .playlist_state.json
 
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
+# Mock videos (generated test files)
+mock_media/**/*.mp4
+mock_media/**/*.mkv
+mock_media/**/*.mov
+mock_media/**/*.avi
+
+# Keep folder structure
+!mock_media/*/.gitkeep

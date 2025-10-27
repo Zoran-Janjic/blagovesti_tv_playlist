@@ -1,6 +1,7 @@
-FastAPI
-uvicorn
-pydantic
+fastapi
+uvicorn[standard]
+pydantic-settings
 watchdog
 python-multipart
 aiofiles
+ffmpeg-python

@@ -1,16 +1,22 @@
-[tool.poetry]
+[project]
 name = "fastapi-ffplayout"
 version = "0.1.0"
 description = "A FastAPI application for generating video playlists based on fixed schedules and categories."
-authors = ["zoran janjic janjiczoran23@gmail.com"]
-license = "MIT"
-
-[tool.poetry.dependencies]
-python = "^3.8"
-fastapi = "^0.75.0"
-uvicorn = "^0.17.0"
-pydantic = "^1.9.0"
+authors = [
+    {name = "Zoran Janjic", email = "janjiczoran23@gmail.com"}
+]
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic-settings",
+    "watchdog",
+    "python-multipart",
+    "aiofiles",
+    "ffmpeg-python"
+]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
