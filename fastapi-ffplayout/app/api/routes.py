@@ -17,26 +17,33 @@ async def root():
         "status": "healthy",
         "version": "1.0.0",
         "created_by": "Zoran Janjic",
+        "note": "⚠️ Currently using MOCK video files (silent black videos with random durations 1-3 min) for testing purposes only",
         "endpoints": {
             "docs": "/docs",
             "generate_playlist": "/generate-playlist?date=YYYY-MM-DD",
-            "generate_week": "/generate-week?start_date=YYYY-MM-DD",
             "list_playlists": "/playlists",
-            "get_videos": "/videos"
+            "download_playlist": "/playlists/YYYY/MM/YYYY-MM-DD.json",
+            "get_videos": "/videos",
+            "health_check": "/healthz"
         }
     }
 
 @router.get("/healthz")
 async def health_check():
     """Health check endpoint for monitoring."""
-    return {"status": "healthy", "service": "blagovesti-tv-api"}
+    return {"status": "healthy", "service": "ffplayout-api"}
 
 
 @router.get("/videos")
 async def get_video_files():
+    """Get list of available video files. Note: Currently using mock files for testing."""
     try:
         video_files = scan_video_files(settings.video_directory)
-        return {"video_directory": settings.video_directory, "video_files": video_files}
+        return {
+            "video_directory": settings.video_directory,
+            "video_files": video_files,
+            "note": "⚠️ These are mock video files (silent black screens) with random durations for testing. Real content will be added in production."
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -48,10 +55,15 @@ async def create_playlist(date: str = None, return_file: bool = False):
     Args:
         date: Date in YYYY-MM-DD format
         return_file: If True, returns metadata. If False (default), returns the full playlist JSON
+    
+    Note: Currently using mock video files with random durations for testing.
     """
     try:
         if date:
-            date_obj = datetime.strptime(date, "%Y-%m-%d")
+            try:
+                date_obj = datetime.strptime(date, "%Y-%m-%d")
+            except ValueError:
+                raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD")
         else:
             date_obj = datetime.now()
         
@@ -78,57 +90,15 @@ async def create_playlist(date: str = None, return_file: bool = False):
                 "message": f"Playlist generated successfully for {date_obj.strftime('%Y-%m-%d')}",
                 "playlist_file": str(playlist_file),
                 "download_url": f"/playlists/{year}/{month}/{filename}",
-                "total_items": len(playlist["program"])
+                "total_items": len(playlist["program"]),
+                "note": "⚠️ Using mock video files for testing"
             }
         else:
             # Return the full playlist
             return playlist
             
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@router.post("/generate-week")
-async def create_week_playlists(start_date: str = None):
-    """Generate playlists for 7 consecutive days starting from start_date (defaults to today)."""
-    try:
-        if start_date:
-            date_obj = datetime.strptime(start_date, "%Y-%m-%d")
-        else:
-            date_obj = datetime.now()
-        
-        results = []
-        
-        for day_offset in range(7):
-            target_date = date_obj + timedelta(days=day_offset)
-            
-            out_root = Path(settings.output_directory)
-            year = f"{target_date.year:04d}"
-            month = f"{target_date.month:02d}"
-            dest_dir = out_root / year / month
-            dest_dir.mkdir(parents=True, exist_ok=True)
-            filename = f"{target_date.strftime('%Y-%m-%d')}.json"
-            playlist_file = dest_dir / filename
-            
-            config = {
-                "fixed_slots": settings.fixed_slots,
-                "spica_every_n": settings.spica_every_n,
-                "spica_file": settings.spica_file
-            }
-            generator = PlaylistGenerator(settings.video_directory, str(dest_dir), config)
-            playlist = generator.generate_playlist(date=target_date.strftime('%Y-%m-%d'))
-            generator.save_playlist(playlist, str(playlist_file))
-            
-            results.append({
-                "date": target_date.strftime('%Y-%m-%d'),
-                "playlist_file": str(playlist_file),
-                "download_url": f"/playlists/{year}/{month}/{filename}",
-                "total_items": len(playlist["program"])
-            })
-        
-        return {
-            "message": f"Generated 7-day playlists from {date_obj.strftime('%Y-%m-%d')} to {(date_obj + timedelta(days=6)).strftime('%Y-%m-%d')}",
-            "playlists": results
-        }
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

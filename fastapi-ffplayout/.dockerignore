@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.DS_Store
+playlists/
+*.log
+README.md
+.env
+.pytest_cache/
+.coverage
