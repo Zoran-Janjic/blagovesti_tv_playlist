@@ -12,8 +12,10 @@ class PlaylistGenerator:
         self.video_dir = Path(video_directory)
         self.output_dir = Path(output_directory)
         self.fixed_slots = config.get("fixed_slots", {})
-        self.spica_every_n = config.get("spica_every_n", 3)
+        self.spica_after_every_item = config.get("spica_after_every_item", True)
         self.spica_file = config.get("spica_file", "SPICA_BlagovestiTV.mp4")
+        self.strict_fixed_slots = config.get("strict_fixed_slots", False)
+        self.target_duration_hours = config.get("target_duration_hours", 23.0)
         
         # State tracking for sequential playback
         self.state = self._load_state()
@@ -332,14 +334,15 @@ class PlaylistGenerator:
         
     def generate_playlist(self, date: str = None) -> dict:
         """
-        Generate FFPlayout format playlist for full 24 hours with fixed time slots.
+        Generate FFPlayout format playlist (can be less than 24 hours).
         
         Features:
         - Movies/series (serije, dokumentarni, deciji) selected for the day repeat 3 times
         - For serije, episodes progress sequentially day by day
         - All other categories use round-robin to cycle through content without repetition
-        - Fixed time slots are strictly enforced
-        - SPICA appears after every N items (excluding fixed slots and movies)
+        - Fixed time slots are flexible (can be skipped if strict_fixed_slots=False)
+        - SPICA appears after every item when spica_after_every_item=True
+        - Playlist targets ~23 hours, may end earlier without issue
         """
         if date:
             date_obj = datetime.strptime(date, "%Y-%m-%d")
@@ -369,7 +372,8 @@ class PlaylistGenerator:
         
         # Parse fixed slots into datetime -> category (sorted by time)
         day_start = datetime.combine(date_obj.date(), datetime.strptime("06:00:00", "%H:%M:%S").time())
-        day_end = day_start + timedelta(days=1)
+        # Target end time based on configuration (default ~23 hours from start)
+        day_end = day_start + timedelta(hours=self.target_duration_hours)
         
         fixed_schedule = []
         for time_str, cat in self.fixed_slots.items():
@@ -386,24 +390,21 @@ class PlaylistGenerator:
         
         program = []
         cursor = day_start
-        items_since_last_spica = 0
         fixed_idx = 0
+        last_was_content = False  # Track if last item was content (to insert spica after)
         
         # Categories for filling gaps (exclude movie categories - SPICA already excluded above)
         fill_categories = [c for c in sorted(category_videos.keys()) 
                           if c not in ["serije", "dokumentarni", "deciji"]]
         fill_idx = 0
         
-        # Track last added item to prevent consecutive spicas
-        last_was_spica = False
-        
         # Track if we've played movies in current time window
         last_movie_hour = {cat: -1 for cat in self.daily_movies.keys()}
         
-        # Generate full 24-hour schedule
+        # Generate schedule until target duration (not strict 24h)
         while cursor < day_end:
-            # Check if we need to jump to a fixed slot
-            if fixed_idx < len(fixed_schedule):
+            # Check if we need to jump to a fixed slot (only if strict mode enabled)
+            if self.strict_fixed_slots and fixed_idx < len(fixed_schedule):
                 slot_time, slot_cat = fixed_schedule[fixed_idx]
                 
                 # If we're past or at the slot time, insert it NOW
@@ -424,17 +425,27 @@ class PlaylistGenerator:
                             "duration": float(duration),
                             "source": video_info["path"]
                         })
-                        # Fixed slots reset the SPICA counter
-                        items_since_last_spica = 0
-                        last_was_spica = False
+                        last_was_content = True
                         cursor += timedelta(seconds=duration)
+                        
+                        # Insert SPICA after fixed slot content if enabled
+                        if self.spica_after_every_item and spica_path_info:
+                            spica_duration = float(spica_path_info["duration"])
+                            program.append({
+                                "in": 0.0,
+                                "out": float(spica_duration),
+                                "duration": float(spica_duration),
+                                "source": spica_path_info["path"]
+                            })
+                            cursor += timedelta(seconds=spica_duration)
+                            last_was_content = False
                     
                     # Move to next fixed slot
                     fixed_idx += 1
                     continue
                 
-                # If next slot is coming soon (within next video), wait for it
-                elif cursor < slot_time < cursor + timedelta(minutes=5):
+                # If next slot is coming soon (within next video), wait for it (only in strict mode)
+                elif self.strict_fixed_slots and cursor < slot_time < cursor + timedelta(minutes=5):
                     # Jump cursor to slot time
                     cursor = slot_time
                     continue
@@ -453,31 +464,28 @@ class PlaylistGenerator:
                             "duration": float(duration),
                             "source": video_info["path"]
                         })
-                        # Movies reset the SPICA counter
-                        items_since_last_spica = 0
-                        last_was_spica = False
+                        last_was_content = True
                         last_movie_hour[cat] = cursor.hour
                         movie_play_count[cat] += 1
                         cursor += timedelta(seconds=duration)
+                        
+                        # Insert SPICA after movie if enabled
+                        if self.spica_after_every_item and spica_path_info:
+                            spica_duration = float(spica_path_info["duration"])
+                            program.append({
+                                "in": 0.0,
+                                "out": float(spica_duration),
+                                "duration": float(spica_duration),
+                                "source": spica_path_info["path"]
+                            })
+                            cursor += timedelta(seconds=spica_duration)
+                            last_was_content = False
+                        
                         movie_played = True
                         break
                 
                 if movie_played:
                     continue
-            
-            # Insert SPICA after every N regular content items (and not if last was spica)
-            if items_since_last_spica >= self.spica_every_n and spica_path_info and not last_was_spica:
-                duration = float(spica_path_info["duration"])
-                program.append({
-                    "in": 0.0,
-                    "out": float(duration),
-                    "duration": float(duration),
-                    "source": spica_path_info["path"]
-                })
-                items_since_last_spica = 0
-                last_was_spica = True
-                cursor += timedelta(seconds=duration)
-                continue
             
             # Fill with regular content from categories (round-robin)
             if fill_categories:
@@ -493,9 +501,20 @@ class PlaylistGenerator:
                         "duration": float(duration),
                         "source": video_info["path"]
                     })
-                    items_since_last_spica += 1  # Only regular content counts toward SPICA
-                    last_was_spica = False
+                    last_was_content = True
                     cursor += timedelta(seconds=duration)
+                    
+                    # Insert SPICA after regular content if enabled
+                    if self.spica_after_every_item and spica_path_info:
+                        spica_duration = float(spica_path_info["duration"])
+                        program.append({
+                            "in": 0.0,
+                            "out": float(spica_duration),
+                            "duration": float(spica_duration),
+                            "source": spica_path_info["path"]
+                        })
+                        cursor += timedelta(seconds=spica_duration)
+                        last_was_content = False
                 else:
                     # No more videos in rotation, skip ahead
                     cursor += timedelta(minutes=15)

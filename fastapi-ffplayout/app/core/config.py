@@ -38,11 +38,17 @@ class Settings(BaseSettings):
         "spica": "spica",
     }
     
-    # How often to insert spica (after N regular items)
-    spica_every_n: int = 3
+    # Insert spica after every item (True) or skip spica insertion (False)
+    spica_after_every_item: bool = True
     
     # Spica file name
     spica_file: str = "SPICA_BlagovestiTV.mp4"
+    
+    # Enforce fixed slots strictly (True) or allow flexible scheduling (False)
+    strict_fixed_slots: bool = False
+    
+    # Target playlist duration in hours (can be less, will not enforce exact 24h)
+    target_duration_hours: float = 23.0
 
     class Config:
         env_file = ".env"

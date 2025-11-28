@@ -56,7 +56,11 @@ async def create_playlist(date: str = None, return_file: bool = False):
         date: Date in YYYY-MM-DD format
         return_file: If True, returns metadata. If False (default), returns the full playlist JSON
     
-    Note: Currently using mock video files with random durations for testing.
+    Note: 
+    - Currently using mock video files with random durations for testing.
+    - Playlist targets ~23 hours (can be shorter, no problem with pause).
+    - SPICA inserted after every item (can be disabled in config).
+    - Fixed slots are flexible by default (strict_fixed_slots=False).
     """
     try:
         if date:
@@ -77,8 +81,10 @@ async def create_playlist(date: str = None, return_file: bool = False):
         
         config = {
             "fixed_slots": settings.fixed_slots,
-            "spica_every_n": settings.spica_every_n,
-            "spica_file": settings.spica_file
+            "spica_after_every_item": settings.spica_after_every_item,
+            "spica_file": settings.spica_file,
+            "strict_fixed_slots": settings.strict_fixed_slots,
+            "target_duration_hours": settings.target_duration_hours
         }
         generator = PlaylistGenerator(settings.video_directory, str(dest_dir), config)
         playlist = generator.generate_playlist(date=date_obj.strftime('%Y-%m-%d'))
