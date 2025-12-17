@@ -30,53 +30,53 @@ RUN mkdir -p /app/mock_media/deciji \
 
 # Generate tiny mock videos (small resolution for faster build)
 RUN cd /app/mock_media/spica_folder && \
-    ffmpeg -f lavfi -i color=c=black:s=320x240:d=25 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 25 -c:a aac -ar 44100 -ac 2 SPICA_BlagovestiTV.mp4 && \
-    ffmpeg -f lavfi -i color=c=black:s=320x240:d=25 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 25 -c:a aac -ar 44100 -ac 2 spica_folder_01.mp4 && \
-    ffmpeg -f lavfi -i color=c=black:s=320x240:d=25 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 25 -c:a aac -ar 44100 -ac 2 spica_folder_02.mp4 && \
-    ffmpeg -f lavfi -i color=c=black:s=320x240:d=25 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 25 -c:a aac -ar 44100 -ac 2 spica_folder_03.mp4 && \
-    ffmpeg -f lavfi -i color=c=black:s=320x240:d=25 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 25 -c:a aac -ar 44100 -ac 2 spica_folder_04.mp4 && \
-    ffmpeg -f lavfi -i color=c=black:s=320x240:d=25 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 25 -c:a aac -ar 44100 -ac 2 spica_folder_05.mp4
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 SPICA_BlagovestiTV.mp4 && \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 spica_folder_01.mp4 && \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 spica_folder_02.mp4 && \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 spica_folder_03.mp4 && \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 spica_folder_04.mp4 && \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 spica_folder_05.mp4
 
 RUN cd /app/mock_media/deciji && \
     for i in 01 02 03 04 05; do \
-        ffmpeg -f lavfi -i color=c=black:s=320x240:d=90 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 90 -c:a aac -ar 44100 -ac 2 deciji_$i.mp4; \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 deciji_$i.mp4; \
     done
 
 RUN cd /app/mock_media/dokumentarni && \
     for i in 01 02 03 04 05; do \
-        ffmpeg -f lavfi -i color=c=black:s=320x240:d=150 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 150 -c:a aac -ar 44100 -ac 2 dokumentarni_$i.mp4; \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 dokumentarni_$i.mp4; \
     done
 
 RUN cd /app/mock_media/duhovne_pouke && \
     for i in 01 02 03 04 05; do \
-        ffmpeg -f lavfi -i color=c=black:s=320x240:d=120 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 120 -c:a aac -ar 44100 -ac 2 duhovne_pouke_$i.mp4; \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 duhovne_pouke_$i.mp4; \
     done
 
 RUN cd /app/mock_media/molitve && \
     for i in 01 02 03 04 05; do \
-        ffmpeg -f lavfi -i color=c=black:s=320x240:d=90 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 90 -c:a aac -ar 44100 -ac 2 molitve_$i.mp4; \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 molitve_$i.mp4; \
     done
 
 RUN cd /app/mock_media/muzika && \
     for i in 01 02 03 04 05; do \
-        ffmpeg -f lavfi -i color=c=black:s=320x240:d=90 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 90 -c:a aac -ar 44100 -ac 2 muzika_$i.mp4; \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 muzika_$i.mp4; \
     done
 
 RUN cd /app/mock_media/psaltir && \
-    ffmpeg -f lavfi -i color=c=black:s=320x240:d=150 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 150 -c:a aac -ar 44100 -ac 2 Otac_Joil_katizma_10.mp4 && \
-    ffmpeg -f lavfi -i color=c=black:s=320x240:d=160 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 160 -c:a aac -ar 44100 -ac 2 Otac_Joil_katizma_11.mp4 && \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 Otac_Joil_katizma_10.mp4 && \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 Otac_Joil_katizma_11.mp4 && \
     for i in 01 02 03 04 05; do \
-        ffmpeg -f lavfi -i color=c=black:s=320x240:d=150 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 150 -c:a aac -ar 44100 -ac 2 psaltir_$i.mp4; \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 psaltir_$i.mp4; \
     done
 
 RUN cd /app/mock_media/putopisi && \
     for i in 01 02 03 04 05; do \
-        ffmpeg -f lavfi -i color=c=black:s=320x240:d=150 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 150 -c:a aac -ar 44100 -ac 2 putopisi_$i.mp4; \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 putopisi_$i.mp4; \
     done
 
 RUN cd /app/mock_media/serije && \
     for i in 01 02 03 04 05; do \
-        ffmpeg -f lavfi -i color=c=black:s=320x240:d=150 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 150 -c:a aac -ar 44100 -ac 2 serije_$i.mp4; \
+    ffmpeg -f lavfi -i color=c=black:s=320x240:d=600 -f lavfi -i anullsrc -c:v libx264 -preset ultrafast -t 600 -c:a aac -ar 44100 -ac 2 serije_$i.mp4; \
     done
 
 # Create playlists directory
