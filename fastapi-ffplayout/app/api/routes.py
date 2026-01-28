@@ -84,10 +84,27 @@ async def create_playlist(date: str = None, return_file: bool = False):
             "spica_after_every_item": settings.spica_after_every_item,
             "spica_file": settings.spica_file,
             "strict_fixed_slots": settings.strict_fixed_slots,
-            "target_duration_hours": settings.target_duration_hours
+            "target_duration_hours": settings.target_duration_hours,
+            "recurrence_exclusion_days": settings.recurrence_exclusion_days,
+            "filler_categories": settings.filler_categories
         }
         generator = PlaylistGenerator(settings.video_directory, str(dest_dir), config)
-        playlist = generator.generate_playlist(date=date_obj.strftime('%Y-%m-%d'))
+        
+        # Determine strict Template Source
+        # For now, we assume a 'template.json' exists in the project root or specific path
+        # If not, fallback to example? Or empty?
+        template_source = Path("template.json") # Root
+        if not template_source.exists():
+            # Fallback to the exampleGeneratedFile.json provided by user as template base
+            template_source = Path("exampleGeneratedFile.json")
+            
+        if template_source.exists():
+             playlist = generator.generate_playlist_from_template(str(template_source), date=date_obj.strftime('%Y-%m-%d'))
+        else:
+             # Fallback to old logic if no template found
+             print("Warning: No template.json found, using legacy generation logic.")
+             playlist = generator.generate_playlist(date=date_obj.strftime('%Y-%m-%d'))
+
         generator.save_playlist(playlist, str(playlist_file))
         
         # Return the actual playlist JSON by default

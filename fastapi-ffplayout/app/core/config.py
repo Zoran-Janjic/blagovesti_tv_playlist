@@ -50,6 +50,15 @@ class Settings(BaseSettings):
     # Target playlist duration in hours (can be less, will not enforce exact 24h)
     target_duration_hours: float = 23.0
 
+    # Number of days before a video can be repeated
+    recurrence_exclusion_days: int = 10
+    
+    # Categories used for smart filling functionality
+    filler_categories: dict = {
+        "15min": "15min",
+        "30min": "30min"
+    }
+
     class Config:
         env_file = ".env"
 

@@ -17,6 +17,8 @@ class PlaylistGenerator:
         self.spica_file = config.get("spica_file", "SPICA_BlagovestiTV.mp4")
         self.strict_fixed_slots = config.get("strict_fixed_slots", False)
         self.target_duration_hours = config.get("target_duration_hours", 23.0)
+        self.recurrence_days = config.get("recurrence_exclusion_days", 10)
+        self.filler_categories = config.get("filler_categories", {"15min": "15min", "30min": "30min"})
         
         # State tracking for playback history
         self.state = self._load_state()
@@ -95,7 +97,15 @@ class PlaylistGenerator:
         
         for folder in sorted(self.video_dir.iterdir()):
             if folder.is_dir():
-                category = folder.name
+                folder_name = folder.name
+                
+                # Use mapped category instead of raw folder name
+                # But we handle Spica separately generally? 
+                # _map_folder_to_category handles spica -> spica.
+                category = self._map_folder_to_category(folder_name)
+                
+                # Skip if category is None or unwanted? (Usually returns 'ostalo')
+                
                 files = []
                 for f in sorted(folder.iterdir()):
                     if f.suffix.lower() in ('.mp4', '.mkv', '.mov', '.avi'):
@@ -107,64 +117,81 @@ class PlaylistGenerator:
                             "filename": f.name
                         })
                 if files:
-                    videos[category] = files
+                    if category not in videos:
+                        videos[category] = []
+                    videos[category].extend(files)
         return videos
     
-    def _get_next_video(self, category: str, videos: Dict[str, List[dict]], skip_daily: bool = True) -> dict:
+    def _was_played_recently(self, filepath: str, date_obj: datetime) -> bool:
+        """Check if video was played within recurrence_exclusion_days."""
+        last_played_map = self.state.get("last_played", {})
+        if filepath not in last_played_map:
+            return False
+            
+        try:
+            last_played_date = datetime.fromisoformat(last_played_map[filepath])
+            # If stored as full datetime, we might want to compare dates or full delta
+            # Let's compare just dates to be safe 10 'calendar days'
+            delta_days = (date_obj.date() - last_played_date.date()).days
+            return delta_days < self.recurrence_days
+        except ValueError:
+            return False
+
+    def _get_next_video(self, category: str, videos: Dict[str, List[dict]], skip_daily: bool = True, target_date: datetime = None) -> dict:
         """
-        Get next video from category using Least Recently Played priority.
+        Get next video from category using Priority Logic & Recurrence Rule.
         
         Priority Logic:
-        1. Files NOT in 'last_played' state (New files) -> Priority Level 0
-        2. Files in 'last_played' state -> Priority Level 1 (Sorted by timestamp asc)
+        1. Candidates = Files NOT played in the last X days.
+        2. Sort Candidates by Least Recently Played (or Never Played).
+        3. If all files were played recently (Hard constraint violation), fall back to Least Recently Played.
         """
         files = videos.get(category, [])
         if not files:
             return None
+            
+        current_date_obj = target_date if target_date else datetime.now()
         
         # Filter out currently selected daily movies if requested
         candidates = []
         if skip_daily and category in self.daily_movies:
             daily_path = self.daily_movies[category]["path"]
             candidates = [f for f in files if f["path"] != daily_path]
-            # If filtering removed everything (only 1 file exists), allow it
-            if not candidates:
-                candidates = files
+            if not candidates: candidates = files
         else:
             candidates = files
 
-        # Sort candidates by priority
-        # Key: (Has been played? [Boolean], Last Played Timestamp [String ISO], Mtime [Float])
-        # We want:
-        # - Has been played = False (0) first
-        # - If Played = True (1), then Oldest Timestamp first
+        # Filter by Recurrence Rule (10 days)
+        valid_candidates = [f for f in candidates if not self._was_played_recently(f["path"], current_date_obj)]
         
+        # If no valid candidates (all played recently), fallback to ALL candidates (soft failure)
+        # We prefer to repeat something than show nothing.
+        # But we still want to pick the "oldest" among them.
+        selection_pool = valid_candidates if valid_candidates else candidates
+
         last_played_map = self.state.get("last_played", {})
         
         def sort_key(video):
             path = video["path"]
             if path not in last_played_map:
                 # Never played. Priority 0.
-                # Tie-breaker: mtime (older files first? or newer? User said "if I add new file... script inserts it next")
-                # User assumes "waiting to be played" queue.
-                # Let's use mtime to be stable.
                 return (0, 0, video["mtime"])
             else:
                 # Already played.
                 timestamp_str = last_played_map[path]
                 return (1, timestamp_str, video["mtime"])
         
-        candidates.sort(key=sort_key)
+        selection_pool.sort(key=sort_key)
         
-        # Pick the top one
-        chosen = candidates[0]
+        if not selection_pool:
+            return None
+            
+        chosen = selection_pool[0]
         
-        # Note: We do NOT update state here instantly if it's just a 'peek' for generating the playlist item.
-        # We should update state when we actually confirm it's added to the playlist.
-        # But this function is usually called when adding.
-        # To avoid side-effects if called multiple times, we might defer state save?
-        # For now, we update the timestamp in memory.
-        self._update_last_played(chosen["path"], datetime.now())
+        # Important: We do not update state here for 'peek' operations entirely, 
+        # but the logic assumes if we pick it, we will use it.
+        # For the generator, we update the in-memory state.
+        self._update_last_played(chosen["path"], current_date_obj)
         
         return chosen
     
@@ -255,12 +282,8 @@ class PlaylistGenerator:
                         continue
 
             # Default / Non-Sequential Logic: Use Priority System
-            # Reuse _get_next_video logic but without updating state multiple times yet? 
-            # Actually _get_next_video updates state. That's fine.
-            # But wait, if we call it here, it updates the timestamp.
-            # If we play it 3 times today, that's fine.
             
-            selected_video = self._get_next_video(category, videos, skip_daily=False)
+            selected_video = self._get_next_video(category, videos, skip_daily=False, target_date=datetime.strptime(date_str, "%Y-%m-%d"))
             if selected_video:
                 daily_selection[category] = selected_video
 
@@ -433,7 +456,7 @@ class PlaylistGenerator:
                         vid = self.daily_movies[slot_cat]
                         movie_play_count[slot_cat] += 1
                     else:
-                        vid = self._get_next_video(slot_cat, category_videos)
+                        vid = self._get_next_video(slot_cat, category_videos, target_date=date_obj)
                     
                     if vid:
                         d = float(vid["duration"])
@@ -474,7 +497,7 @@ class PlaylistGenerator:
             if fill_categories:
                 cat = fill_categories[fill_idx % len(fill_categories)]
                 fill_idx += 1
-                vid = self._get_next_video(cat, category_videos)
+                vid = self._get_next_video(cat, category_videos, target_date=date_obj)
                 if vid:
                     d = float(vid["duration"])
                     program.append({"in": 0.0, "out": d, "duration": d, "source": vid["path"]})
@@ -493,4 +516,139 @@ class PlaylistGenerator:
             "channel": "Channel 1",
             "date": date_str,
             "program": program
+        }
+
+    def _get_filler_video(self, gap_duration: float, videos: Dict[str, List[dict]], date_obj: datetime) -> dict:
+        """Find a suitable filler video based on gap size."""
+        # Config: filler_categories = {"15min": "15min_folder", "30min": "30min_folder"}
+        
+        # Thresholds (logic from user: /15min or /30min depending on gap)
+        # Let's say:
+        # Gap 10-20 min -> try 15min folder
+        # Gap > 20 min -> try 30min folder
+        # Gap < 10 min -> too small? return None (no filler)
+        
+        target_cat = None
+        if 600 <= gap_duration <= 1300: # 10min to ~21min
+            target_cat = self.filler_categories.get("15min")
+        elif gap_duration > 1300: # > 21min
+            target_cat = self.filler_categories.get("30min")
+            
+        if target_cat:
+            # Try to get video from this filler category
+            # We treat fillers as normal videos (recurrence applies? maybe not strictly needed for fillers but good practice)
+            # Maybe relax recurrence for fillers? Let's use standard logic for now.
+            return self._get_next_video(target_cat, videos, target_date=date_obj)
+            
+        return None
+
+    def generate_playlist_from_template(self, template_path: str, date: str = None) -> dict:
+        """
+        Generate playlist based on Day_0 template structure.
+        """
+        if date:
+            date_obj = datetime.strptime(date, "%Y-%m-%d")
+        else:
+            date_obj = datetime.now()
+        
+        date_str = date_obj.strftime("%Y-%m-%d")
+        videos = self._scan_videos()
+        spica_info = self._find_spica(videos)
+        
+        # Load Template
+        try:
+            with open(template_path, 'r', encoding='utf-8') as f:
+                template_data = json.load(f)
+        except Exception as e:
+            print(f"Error loading template: {e}")
+            return self.generate_playlist(date) # Fallback to old logic
+            
+        template_program = template_data.get("program", [])
+        new_program = []
+        
+        # Pre-select daily movies just in case template relies on Fixed Slots or specific logic?
+        # Actually, template replaces the generating loop. 
+        # But we still need to know WHICH file to pick for a category slot.
+        # How do we know the category of a slot in Day_0? 
+        # We must INFER it from the source path in the template item.
+        
+        # Also need to respect Fixed Slots if they OVERRIDE the template? 
+        # User said: "Day_0 kao Šablon: Generator će jednostavno 'prepisati' strukturu tvoje ručno napravljene playliste"
+        # AND "Fiksni Termini: Glavne emisije i filmovi ostaju u svojim terminima"
+        # This implies the Template IS the schedule structure.
+        
+        current_time = datetime.combine(date_obj.date(), datetime.strptime("06:00:00", "%H:%M:%S").time())
+        # We might need to track strict time if we want to ensure fixed slots align?
+        # Or does the template already contain the fixed slots? 
+        # "Day_0... prepisati strukturu... Fiksni termini ostaju".
+        # This likely means the template HAS the fixed slots in correct order.
+        # We just replace the CONTENT of non-fixed items?
+        
+        for item in template_program:
+            original_source = item.get("source", "")
+            duration_slot = item.get("duration", 0)
+            
+            # Identify Category from Source Path
+            # e.g. /var/lib/ffplayout/tv-media/Serije/Grigorije... -> "serije"
+            # We can try to map the folder name.
+            folder_name = os.path.basename(os.path.dirname(original_source))
+            category = self._map_folder_to_category(folder_name)
+            
+            # Special Handling: Spica
+            if self._is_spica_category(folder_name) or "SPICA" in os.path.basename(original_source):
+                # Just add Spica
+                if spica_info:
+                     new_program.append({
+                        "in": 0.0, 
+                        "out": float(spica_info["duration"]), 
+                        "duration": float(spica_info["duration"]), 
+                        "source": spica_info["path"]
+                    })
+                continue
+            
+            # Special Handling: Psaltir (Keep Day_0 logic or use sequential?)
+            # "Day_0 prepisati strukturu" -> implies if Day_0 has Psaltir_01, we put Psaltir_01?
+            # Or do we rotate Psaltir? 
+            # Psaltir logic in old code: 01 in morning, 02 at night?
+            # User didn't explicitly say "Rotate Psaltir". But usually Psaltir is sequential.
+            # Let's assume for mapped categories, we ROTATE using new logic.
+            
+            # Content Selection
+            # Check if it's a "Fixed Item" that should remain exactly same? 
+            # Maybe Psaltir 01/02 are fixed items?
+            # If category is 'psaltir', maybe we find the specific one?
+            
+            selected_vid = self._get_next_video(category, videos, target_date=date_obj)
+            
+            if selected_vid:
+                d = float(selected_vid["duration"])
+                new_program.append({
+                    "in": 0.0, "out": d, "duration": d, "source": selected_vid["path"]
+                })
+                
+                # Check for Gap
+                gap = duration_slot - d
+                # Tolerance? If gap is large positive, we need filler.
+                # If gap is negative (new video is longer), that's usually OK (schedule shifts), 
+                # UNLESS fixed slots must be hit.
+                
+                if gap > 0:
+                    filler = self._get_filler_video(gap, videos, date_obj)
+                    if filler:
+                         fd = float(filler["duration"])
+                         new_program.append({
+                            "in": 0.0, "out": fd, "duration": fd, "source": filler["path"]
+                        })
+                        
+            else:
+                # If no video found, keep original? Or skip?
+                # Maybe keep original as fallback to avoid empty slot?
+                # But original path might be from 10 days ago (if Day_0 is old).
+                pass
+
+        self._save_state()
+        return {
+            "channel": template_data.get("channel", "Channel 1"),
+            "date": date_str,
+            "program": new_program
         }

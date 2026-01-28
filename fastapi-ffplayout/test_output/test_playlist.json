@@ -1,0 +1,366 @@
+{
+  "channel": "Channel 1",
+  "date": "2026-06-01",
+  "program": [
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_002.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_003.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_004.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_005.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Molitve\\MockVideo_Molitve_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Molitve\\MockVideo_Molitve_002.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_002.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_003.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\15min\\MockVideo_15min_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_004.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_005.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\15min\\MockVideo_15min_002.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E02.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\15min\\MockVideo_15min_003.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\30min\\MockVideo_30min_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\30min\\MockVideo_30min_002.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E03.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E04.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\30min\\MockVideo_30min_003.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Putopisi\\MockVideo_Putopisi_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E05.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Duhovne pouke\\MockVideo_Duhovne pouke_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Duhovne pouke\\MockVideo_Duhovne pouke_002.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_002.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Duhovne pouke\\MockVideo_Duhovne pouke_003.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Psaltir\\MockVideo_Psaltir_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Serije\\MockSeries_S01E01.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_003.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_004.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Spica_folder\\MockVideo_Spica_folder_005.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Ostalo\\MockVideo_Ostalo_001.mp4"
+    },
+    {
+      "in": 0.0,
+      "out": 900.0,
+      "duration": 900.0,
+      "source": "C:\\Users\\janji\\Desktop\\projects\\blagovesti_tv_playlist\\fastapi-ffplayout\\mock_media\\Muzika\\MockVideo_Muzika_001.mp4"
+    }
+  ]
+}
